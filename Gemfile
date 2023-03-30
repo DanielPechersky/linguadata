@@ -4,9 +4,9 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "rbs"
+gem "rbs", "~> 3.0.4"
 
-gem "steep"
+gem "steep", "~> 1.4.0.dev.2"
 
 gem "rake"
 

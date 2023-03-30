@@ -6,8 +6,8 @@ module Linguadata
   end
 
   module Option
-    Some: Data & _Option[any]
-    None: Data & _Option[any]
+    Some: Data & _Option[untyped]
+    None: Data & _Option[untyped]
 
     interface _Option[T]
       def unwrap: () -> T
