@@ -1,4 +1,29 @@
 module Linguadata
   VERSION: String
+
   # See the writing guide of rbs: https://github.com/ruby/rbs#guides
+  class Error < StandardError
+  end
+
+  module Option
+    Some: Data & _Option[any]
+    None: Data & _Option[any]
+
+    interface _Option[T]
+      def unwrap: () -> T
+
+      def map: [U] { (T) -> U } -> _Option[U]
+    end
+
+    def from_nillable: [T] (T? value) -> _Option[T]
+  end
+
+  module Result
+    Success: Data & _Result[top, top]
+    Failure: Data & _Result[top, top]
+
+    interface _Result[T, E]
+
+    end
+  end
 end
