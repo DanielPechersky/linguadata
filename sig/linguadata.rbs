@@ -13,10 +13,6 @@ module Linguadata
     end
 
     class OneItemData[T] < Data
-      def self.new: [T] (T) -> instance
-
-      def self.[]: [T] (T) -> instance
-
       def deconstruct: () -> [T]
 
       def deconstruct_keys: (?Array[Symbol]?) -> { Symbol: T }
@@ -28,6 +24,10 @@ module Linguadata
 
     class Some[T] < DataHelpers::OneItemData[T]
       include _Option[T]
+
+      def self.new: [T] (T) -> Some[T]
+
+      def self.[]: [T] (T) -> Some[T]
     end
 
     class None < DataHelpers::ZeroItemData
@@ -51,6 +51,8 @@ module Linguadata
     end
 
     def from_nillable: [T] (T? value) -> option[T]
+
+    def to_nillable: [T] (option[T]) -> T?
   end
 
   module Result
@@ -58,10 +60,18 @@ module Linguadata
 
     class Success[T] < DataHelpers::OneItemData[T]
       include _Result[T, bot]
+
+      def self.new: [T] (T) -> Success[T]
+
+      def self.[]: [T] (T) -> Success[T]
     end
 
     class Failure[E] < DataHelpers::OneItemData[E]
       include _Result[bot, E]
+
+      def self.new: [E] (E) -> Failure[E]
+
+      def self.[]: [E] (E) -> Failure[E]
     end
 
     interface _Result[T, E]
