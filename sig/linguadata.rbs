@@ -1,3 +1,5 @@
+use RBS::Types::Bases::Bottom
+
 module Linguadata
   VERSION: String
 
@@ -6,11 +8,22 @@ module Linguadata
   end
 
   module Option
-    Some: Data & _Option[untyped]
-    None: Data & _Option[untyped]
+    class Some[T]
+      include _Option[T]
+    end
+
+    class None
+      include _Option[Bottom]
+    end
 
     interface _Option[T]
+      def value: () -> T
+
       def unwrap: () -> T
+
+      def some?: () -> bool
+
+      def none?: () -> bool
 
       def map: [U] { (T) -> U } -> _Option[U]
     end

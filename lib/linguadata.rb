@@ -7,60 +7,34 @@ module Linguadata
   class Error < StandardError; end
 
   module Option
-    Some = Data.define(:value) do
-      def unwrap
-        value
-      end
+    class Some < Data.define(:value)
+      def unwrap = value
 
-      def map(&block)
-        Some[block.call(value)]
-      end
+      def map(&block) = Some[block.call(value)]
 
-      def some?
-        true
-      end
+      def some? = true
 
-      def none?
-        !some?
-      end
+      def none? = false
 
-      def unwrap_or_else(&_block)
-        value
-      end
+      def unwrap_or_else(&_block) = value
 
-      def unwrap_or(_other)
-        value
-      end
+      def unwrap_or(_other) = value
     end
 
-    None = Data.define do
-      def value
-        raise "Cannot get value from None"
-      end
+    class None < Data.define
+      def value = raise "Cannot get value from None"
 
-      def unwrap
-        value
-      end
+      def unwrap = value
 
-      def map(&_block)
-        self
-      end
+      def map(&_block) = self
 
-      def some?
-        false
-      end
+      def some? = false
 
-      def none?
-        !some?
-      end
+      def none? = true
 
-      def unwrap_or_else(&block)
-        block.call
-      end
+      def unwrap_or_else(&block) = block.call
 
-      def unwrap_or(other)
-        other
-      end
+      def unwrap_or(other) = other
     end
 
     def from_nillable(value)
@@ -73,64 +47,36 @@ module Linguadata
   end
 
   module Result
-    Success = Data.define(:value) do
-      def error
-        raise "Cannot get error from Success"
-      end
+    class Success < Data.define(:value)
+      def error = raise "Cannot get error from Success"
 
-      def unwrap
-        value
-      end
+      def unwrap = value
 
-      def unwrap_failure
-        error
-      end
+      def unwrap_failure = error
 
-      def success
-        Option::Some[value]
-      end
+      def success = Option::Some[value]
 
-      def failure
-        Option::None[]
-      end
+      def failure = Option::None[]
 
-      def map(&block)
-        Success[block.call(value)]
-      end
+      def map(&block) = Success[block.call(value)]
 
-      def map_failure(&block)
-        self
-      end
+      def map_failure(&block) = self
     end
 
-    Failure = Data.define(:error) do
-      def value
-        raise "Cannot get value from Failure"
-      end
+    class Failure < Data.define(:error)
+      def value = raise "Cannot get value from Failure"
 
-      def unwrap
-        value
-      end
+      def unwrap = value
 
-      def unwrap_failure
-        error
-      end
+      def unwrap_failure = error
 
-      def success
-        None[]
-      end
+      def success = None[]
 
-      def failure
-        Option[error]
-      end
+      def failure = Option[error]
 
-      def map(&block)
-        self
-      end
+      def map(&_block) = self
 
-      def map_failure(&block)
-        Failure[block.call(error)]
-      end
+      def map_failure(&block) = Failure[block.call(error)]
     end
   end
 end
