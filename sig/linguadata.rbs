@@ -85,6 +85,10 @@ module Linguadata
 
       def unwrap_failure: () -> E
 
+      def success?: () -> bool
+
+      def failure?: () -> bool
+
       def success: () -> Option::option[T]
 
       def failure: () -> Option::option[E]

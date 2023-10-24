@@ -67,6 +67,10 @@ module Linguadata
 
       def unwrap_failure = error
 
+      def success? = true
+
+      def failure? = false
+
       def success = Option::Some[value]
 
       def failure = Option::None[]
@@ -84,6 +88,10 @@ module Linguadata
       def unwrap = value
 
       def unwrap_failure = error
+
+      def success? = false
+
+      def failure? = true
 
       def success = Option::None[]
 
