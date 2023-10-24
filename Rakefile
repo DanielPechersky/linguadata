@@ -7,4 +7,8 @@ RSpec::Core::RakeTask.new(:spec)
 
 require "standard/rake"
 
-task default: %i[spec standard]
+task :typecheck do
+  sh "steep check"
+end
+
+task default: %i[typecheck spec]
