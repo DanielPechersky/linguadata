@@ -9,4 +9,11 @@ RSpec.describe Linguadata::Result do
   it "returns value as option" do
     expect(described_class::Success[1].success).to eq(Linguadata::Option::Some[1])
   end
+
+  it "map methods work as expected" do
+    expect(described_class::Success[1].map { |x| x + 1 }).to eq(described_class::Success[2])
+    expect(described_class::Failure[1].map { |x| x + 1 }).to eq(described_class::Failure[1])
+    expect(described_class::Success[1].map_failure { |x| x + 1 }).to eq(described_class::Success[1])
+    expect(described_class::Failure[1].map_failure { |x| x + 1 }).to eq(described_class::Failure[2])
+  end
 end
