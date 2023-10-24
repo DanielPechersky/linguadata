@@ -3,26 +3,22 @@ module Linguadata
 
   module DataHelpers
     class ZeroItemData < Data
-      def self.new: () -> instance
-
-      def self.[]: () -> instance
-
       def deconstruct: () -> [ ]
 
       def deconstruct_keys: (?Array[Symbol]?) -> { }
     end
 
-    class OneItemData[T] < Data
+    class OneItemData[out T] < Data
       def deconstruct: () -> [T]
 
-      def deconstruct_keys: (?Array[Symbol]?) -> { Symbol: T }
+      def deconstruct_keys: (?Array[Symbol]?) -> ({ } | { Symbol: T })
     end
   end
 
   module Option
-    type option[T] = Some[T] | None
+    type option[out T] = Some[T] | None
 
-    class Some[T] < DataHelpers::OneItemData[T]
+    class Some[out T] < DataHelpers::OneItemData[T]
       include _Option[T]
 
       def self.new: [T] (T) -> Some[T]
@@ -32,9 +28,13 @@ module Linguadata
 
     class None < DataHelpers::ZeroItemData
       include _Option[bot]
+
+      def self.new: () -> None
+
+      def self.[]: () -> None
     end
 
-    interface _Option[T]
+    interface _Option[out T]
       def value: () -> T
 
       def unwrap: () -> T
@@ -58,9 +58,9 @@ module Linguadata
   end
 
   module Result
-    type result[T, E] = Success[T] | Failure[E]
+    type result[out T, out E] = Success[T] | Failure[E]
 
-    class Success[T] < DataHelpers::OneItemData[T]
+    class Success[out T] < DataHelpers::OneItemData[T]
       include _Result[T, bot]
 
       def self.new: [T] (T) -> Success[T]
@@ -68,7 +68,7 @@ module Linguadata
       def self.[]: [T] (T) -> Success[T]
     end
 
-    class Failure[E] < DataHelpers::OneItemData[E]
+    class Failure[out E] < DataHelpers::OneItemData[E]
       include _Result[bot, E]
 
       def self.new: [E] (E) -> Failure[E]
@@ -76,7 +76,7 @@ module Linguadata
       def self.[]: [E] (E) -> Failure[E]
     end
 
-    interface _Result[T, E]
+    interface _Result[out T, out E]
       def value: () -> T
 
       def error: () -> E
@@ -97,7 +97,9 @@ module Linguadata
 
       def map_failure: [F] { (E) -> F } -> result[T, F]
 
-      def and_then: [U] { (T) -> result[U, E] } -> result[U, E]
+      def or_else: [U, F] { (E) -> result[U, F] } -> result[T | U, F]
+
+      def and_then: [U, F] { (T) -> result[U, F] } -> result[U, E | F]
     end
   end
 end

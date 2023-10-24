@@ -78,6 +78,8 @@ module Linguadata
 
       def map_failure(&_block) = self
 
+      def or_else(&_block) = self
+
       def and_then(&block) = block.call(value)
     end
 
@@ -99,6 +101,8 @@ module Linguadata
       def map(&_block) = self
 
       def map_failure(&block) = Failure[block.call(error)]
+
+      def or_else(&block) = block.call(error)
 
       def and_then(&_block) = self
     end
