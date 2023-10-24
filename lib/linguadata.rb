@@ -4,8 +4,6 @@
 require_relative "linguadata/version"
 
 module Linguadata
-  class Error < StandardError; end
-
   module Option
     class Some < Data.define(:value)
       def unwrap = value

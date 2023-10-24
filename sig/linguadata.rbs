@@ -3,21 +3,37 @@ use RBS::Types::Bases::Bottom
 module Linguadata
   VERSION: String
 
+  module DataHelpers
+    class ZeroItemData < Data
+      def self.new: () -> instance
+
+      def self.[]: () -> instance
+
+      def deconstruct: () -> [ ]
+
+      def deconstruct_keys: (?Array[Symbol]?) -> { }
+    end
+
+    class OneItemData[T] < Data
+      def self.new: [T] (T) -> instance
+
+      def self.[]: [T] (T) -> instance
+
+      def deconstruct: () -> [T]
+
+      def deconstruct_keys: (?Array[Symbol]?) -> { Symbol: T }
+    end
+  end
+
   module Option
     type option[T] = (Some[T] | None) & _Option[T]
 
-    class Some[T]
+    class Some[T] < DataHelpers::OneItemData[T]
       include _Option[T]
-      include Data::_DataClass
-
-      def self.[]: [T] (T) -> Some[T]
     end
 
-    class None
+    class None < DataHelpers::ZeroItemData
       include _Option[Bottom]
-      include Data::_DataClass
-
-      def self.[]: () -> None
     end
 
     interface _Option[T]
@@ -42,18 +58,12 @@ module Linguadata
   module Result
     type result[T, E] = (Success[T] | Failure[E]) & _Result[T, E]
 
-    class Success[T]
+    class Success[T] < DataHelpers::OneItemData[T]
       include _Result[T, Bottom]
-      include Data::_DataClass
-
-      def self.[]: [T] (T) -> Success[T]
     end
 
-    class Failure[E]
+    class Failure[E] < DataHelpers::OneItemData[E]
       include _Result[Bottom, E]
-      include Data::_DataClass
-
-      def self.[]: [E] (E) -> Failure[E]
     end
 
     interface _Result[T, E]

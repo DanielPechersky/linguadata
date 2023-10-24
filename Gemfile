@@ -4,10 +4,10 @@ source "https://rubygems.org"
 
 gemspec
 
-group :development, optional: true do
-  gem "rbs", "~> 3.0.4"
+group :development do
+  gem "rbs"
 
-  gem "steep", "~> 1.4.0.dev.2"
+  gem "steep"
 
   gem "rake"
 
