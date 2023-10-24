@@ -92,6 +92,8 @@ module Linguadata
       def map: [U] { (T) -> U } -> result[U, E]
 
       def map_failure: [F] { (E) -> F } -> result[T, F]
+
+      def and_then: [U] { (T) -> result[U, E] } -> result[U, E]
     end
   end
 end
