@@ -48,11 +48,11 @@ module Linguadata
       def unwrap_or: [U] (U) -> (T | U)
 
       def unwrap_or_else: [U] { () -> U } -> (T | U)
+
+      def and_then: [U] { (T) -> option[U] } -> option[U]
     end
 
     def from_nillable: [T] (T? value) -> option[T]
-
-    def to_nillable: [T] (option[T]) -> T?
   end
 
   module Result
