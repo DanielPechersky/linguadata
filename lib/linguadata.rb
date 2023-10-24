@@ -36,7 +36,8 @@ module Linguadata
     end
 
     def from_nillable(value)
-      if value.nil?
+      case value
+      in nil
         None[]
       else
         Some[value]
@@ -52,9 +53,9 @@ module Linguadata
 
       def unwrap_failure = error
 
-      def success = Some[value]
+      def success = Option::Some[value]
 
-      def failure = None[]
+      def failure = Option::None[]
 
       def map(&block) = Success[block.call(value)]
 
@@ -68,9 +69,9 @@ module Linguadata
 
       def unwrap_failure = error
 
-      def success = None[]
+      def success = Option::None[]
 
-      def failure = Some[error]
+      def failure = Option::Some[error]
 
       def map(&_block) = self
 

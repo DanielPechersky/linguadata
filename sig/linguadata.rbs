@@ -1,5 +1,3 @@
-use RBS::Types::Bases::Bottom
-
 module Linguadata
   VERSION: String
 
@@ -26,14 +24,14 @@ module Linguadata
   end
 
   module Option
-    type option[T] = (Some[T] | None) & _Option[T]
+    type option[T] = Some[T] | None
 
     class Some[T] < DataHelpers::OneItemData[T]
       include _Option[T]
     end
 
     class None < DataHelpers::ZeroItemData
-      include _Option[Bottom]
+      include _Option[bot]
     end
 
     interface _Option[T]
@@ -56,14 +54,14 @@ module Linguadata
   end
 
   module Result
-    type result[T, E] = (Success[T] | Failure[E]) & _Result[T, E]
+    type result[T, E] = Success[T] | Failure[E]
 
     class Success[T] < DataHelpers::OneItemData[T]
-      include _Result[T, Bottom]
+      include _Result[T, bot]
     end
 
     class Failure[E] < DataHelpers::OneItemData[E]
-      include _Result[Bottom, E]
+      include _Result[bot, E]
     end
 
     interface _Result[T, E]
@@ -75,9 +73,9 @@ module Linguadata
 
       def unwrap_failure: () -> E
 
-      def success: () -> result[T, E]
+      def success: () -> Option::option[T]
 
-      def failure: () -> result[T, E]
+      def failure: () -> Option::option[E]
 
       def map: [U] { (T) -> U } -> result[U, E]
 
