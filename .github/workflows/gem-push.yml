@@ -20,6 +20,8 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.2.x
+    - name: Run the default task
+      run: bundle exec rake
 
     - name: Publish to GPR
       run: |
