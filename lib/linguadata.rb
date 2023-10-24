@@ -19,6 +19,14 @@ module Linguadata
       def unwrap_or(_other) = value
 
       def and_then(&block) = block.call(value)
+
+      def filter(&block)
+        if block.call(value)
+          self
+        else
+          None[]
+        end
+      end
     end
 
     class None < Data.define
@@ -37,6 +45,8 @@ module Linguadata
       def unwrap_or(other) = other
 
       def and_then(&_block) = self
+
+      def filter(&_block) = self
     end
 
     def from_nillable(value)
