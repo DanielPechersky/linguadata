@@ -54,13 +54,13 @@ module Linguadata
 
       def unwrap_failure = error
 
-      def success = Option::Some[value]
+      def success = Some[value]
 
-      def failure = Option::None[]
+      def failure = None[]
 
       def map(&block) = Success[block.call(value)]
 
-      def map_failure(&block) = self
+      def map_failure(&_block) = self
     end
 
     class Failure < Data.define(:error)
@@ -72,7 +72,7 @@ module Linguadata
 
       def success = None[]
 
-      def failure = Option[error]
+      def failure = Some[error]
 
       def map(&_block) = self
 

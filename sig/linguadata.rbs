@@ -3,17 +3,21 @@ use RBS::Types::Bases::Bottom
 module Linguadata
   VERSION: String
 
-  # See the writing guide of rbs: https://github.com/ruby/rbs#guides
-  class Error < StandardError
-  end
-
   module Option
+    type option[T] = (Some[T] | None) & _Option[T]
+
     class Some[T]
       include _Option[T]
+      include Data::_DataClass
+
+      def self.[]: [T] (T) -> Some[T]
     end
 
     class None
       include _Option[Bottom]
+      include Data::_DataClass
+
+      def self.[]: () -> None
     end
 
     interface _Option[T]
@@ -25,18 +29,49 @@ module Linguadata
 
       def none?: () -> bool
 
-      def map: [U] { (T) -> U } -> _Option[U]
+      def map: [U] { (T) -> U } -> option[U]
+
+      def unwrap_or: (T) -> T
+
+      def unwrap_or_else: { () -> T } -> T
     end
 
-    def from_nillable: [T] (T? value) -> _Option[T]
+    def from_nillable: [T] (T? value) -> option[T]
   end
 
   module Result
-    Success: Data & _Result[top, top]
-    Failure: Data & _Result[top, top]
+    type result[T, E] = (Success[T] | Failure[E]) & _Result[T, E]
+
+    class Success[T]
+      include _Result[T, Bottom]
+      include Data::_DataClass
+
+      def self.[]: [T] (T) -> Success[T]
+    end
+
+    class Failure[E]
+      include _Result[Bottom, E]
+      include Data::_DataClass
+
+      def self.[]: [E] (E) -> Failure[E]
+    end
 
     interface _Result[T, E]
+      def value: () -> T
 
+      def error: () -> E
+
+      def unwrap: () -> T
+
+      def unwrap_failure: () -> E
+
+      def success: () -> result[T, E]
+
+      def failure: () -> result[T, E]
+
+      def map: [U] { (T) -> U } -> result[U, E]
+
+      def map_failure: [F] { (E) -> F } -> result[T, F]
     end
   end
 end
