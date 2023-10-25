@@ -2,6 +2,8 @@
 
 Rust's `Result` and `Option` types for Ruby. Properly type annotated.
 
+[![Gem Version](https://badge.fury.io/rb/linguadata.svg)](https://badge.fury.io/rb/linguadata)
+
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
