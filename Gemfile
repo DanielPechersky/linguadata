@@ -14,4 +14,9 @@ group :development do
   gem "rspec"
 
   gem "standard"
+
+  gem "mutant-rspec"
+  source 'https://oss:7Cp4pNQG3WbtluEGXnLC2QmucJ17q7Zw@gem.mutant.dev' do
+    gem 'mutant-license'
+  end
 end
