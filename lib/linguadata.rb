@@ -89,7 +89,7 @@ module Linguadata
     end
 
     class Failure < Data.define(:error)
-      def value = raise "Cannot get value from Failure"
+      def value = raise NoValueInFailureError
 
       alias_method :unwrap, :value
       alias_method :unwrap_failure, :error
