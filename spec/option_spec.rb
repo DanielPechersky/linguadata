@@ -48,6 +48,10 @@ RSpec.describe Linguadata::Option do
     expect(none[].filter { |x| x > 0 }).to eq(none[])
   end
 
+  it "the error has a message" do
+    expect(described_class::NoValueError.new.message).to eq("Attempted to access a value from 'None', which does not hold any value.")
+  end
+
   describe "#from_nillable" do
     it "correctly converts nil to None" do
       expect(described_class.from_nillable(nil)).to eq(none[])

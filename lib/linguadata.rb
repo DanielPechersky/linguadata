@@ -58,7 +58,7 @@ module Linguadata
     end
 
     class NoValueError < StandardError
-      def initialize(msg = "Attempted to access a value from 'None', which does not hold any value.")
+      def initialize(_msg = "Attempted to access a value from 'None', which does not hold any value.")
         super
       end
     end
