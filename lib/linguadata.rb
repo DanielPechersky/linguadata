@@ -5,7 +5,7 @@ require_relative "linguadata/version"
 module Linguadata
   module Option
     class Some < Data.define(:value)
-      def unwrap = value
+      alias_method :unwrap, :value
 
       def map(&block) = Some[block.call(value)]
 
@@ -29,9 +29,9 @@ module Linguadata
     end
 
     class None < Data.define
-      def value = raise "Cannot get value from None"
+      def value = raise NoValueError
 
-      def unwrap = value
+      alias_method :unwrap, :value
 
       def map(&_block) = self
 
@@ -56,15 +56,20 @@ module Linguadata
         Some[value]
       end
     end
+
+    class NoValueError < StandardError
+      def initialize(msg = "Attempted to access a value from 'None', which does not hold any value.")
+        super
+      end
+    end
   end
 
   module Result
     class Success < Data.define(:value)
-      def error = raise "Cannot get error from Success"
+      def error = raise NoErrorInSuccessError
 
-      def unwrap = value
-
-      def unwrap_failure = error
+      alias_method :unwrap, :value
+      alias_method :unwrap_failure, :error
 
       def success? = true
 
@@ -86,9 +91,8 @@ module Linguadata
     class Failure < Data.define(:error)
       def value = raise "Cannot get value from Failure"
 
-      def unwrap = value
-
-      def unwrap_failure = error
+      alias_method :unwrap, :value
+      alias_method :unwrap_failure, :error
 
       def success? = false
 
@@ -105,6 +109,18 @@ module Linguadata
       def and_then(&_block) = self
 
       def or_else(&block) = block.call(error)
+    end
+
+    class NoErrorInSuccessError < StandardError
+      def initialize(msg = "Attempted to access an error from 'Success', which represents a successful outcome without errors.")
+        super
+      end
+    end
+
+    class NoValueInFailureError < StandardError
+      def initialize(msg = "Attempted to access a value from 'Failure', which only contains an error.")
+        super
+      end
     end
   end
 end

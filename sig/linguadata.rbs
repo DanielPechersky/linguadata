@@ -37,7 +37,7 @@ module Linguadata
     interface _Option[out T]
       def value: () -> T
 
-      def unwrap: () -> T
+      alias unwrap value
 
       def some?: () -> bool
 
@@ -55,6 +55,9 @@ module Linguadata
     end
 
     def from_nillable: [T] (T? value) -> option[T]
+
+    class NoValueError < StandardError
+    end
   end
 
   module Result
@@ -81,9 +84,8 @@ module Linguadata
 
       def error: () -> E
 
-      def unwrap: () -> T
-
-      def unwrap_failure: () -> E
+      alias unwrap value
+      alias unwrap_failure error
 
       def success?: () -> bool
 
@@ -100,6 +102,12 @@ module Linguadata
       def and_then: [U, F] { (T) -> result[U, F] } -> result[U, E | F]
 
       def or_else: [U, F] { (E) -> result[U, F] } -> result[T | U, F]
+    end
+
+    class NoErrorInSuccessError < StandardError
+    end
+
+    class NoValueInFailureError < StandardError
     end
   end
 end
