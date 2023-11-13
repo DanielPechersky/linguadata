@@ -48,7 +48,7 @@ module Linguadata
       def filter(&_block) = self
     end
 
-    def from_nillable(value)
+    def self.from_nillable(value)
       case value
       in nil
         None[]
