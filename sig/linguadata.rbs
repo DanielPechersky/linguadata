@@ -97,9 +97,9 @@ module Linguadata
 
       def map_failure: [F] { (E) -> F } -> result[T, F]
 
-      def or_else: [U, F] { (E) -> result[U, F] } -> result[T | U, F]
-
       def and_then: [U, F] { (T) -> result[U, F] } -> result[U, E | F]
+
+      def or_else: [U, F] { (E) -> result[U, F] } -> result[T | U, F]
     end
   end
 end
