@@ -7,21 +7,21 @@ module Linguadata
     class Some < Data.define(:value)
       alias_method :unwrap, :value
 
-      def map(&block)
-        raise RequiredBlockError if block.nil?
-        Some[block.call(value)]
-      end
-
       def some? = true
 
       def none? = false
+
+      def unwrap_or(_other) = value
 
       def unwrap_or_else(&block)
         raise RequiredBlockError if block.nil?
         value
       end
 
-      def unwrap_or(_other) = value
+      def map(&block)
+        raise RequiredBlockError if block.nil?
+        Some[block.call(value)]
+      end
 
       def and_then(&block)
         raise RequiredBlockError if block.nil?
@@ -43,21 +43,21 @@ module Linguadata
 
       alias_method :unwrap, :value
 
-      def map(&block)
-        raise RequiredBlockError if block.nil?
-        self
-      end
-
       def some? = false
 
       def none? = true
+
+      def unwrap_or(other) = other
 
       def unwrap_or_else(&block)
         raise RequiredBlockError if block.nil?
         block.call
       end
 
-      def unwrap_or(other) = other
+      def map(&block)
+        raise RequiredBlockError if block.nil?
+        self
+      end
 
       def and_then(&block)
         raise RequiredBlockError if block.nil?
