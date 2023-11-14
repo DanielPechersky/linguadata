@@ -18,7 +18,9 @@ module Linguadata
     class Some < Data.define(:value)
       alias_method :unwrap, :value
 
-      def map(&block) = Some[block.call(value)]
+      def map(&block)
+        Some[Linguadata.validate_block_presence(block).call(value)]
+      end
 
       def some? = true
 
@@ -36,7 +38,7 @@ module Linguadata
       end
 
       def filter(&block)
-        if block.call(value)
+        if Linguadata.validate_block_presence(block).call(value)
           self
         else
           None[]

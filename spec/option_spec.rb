@@ -11,6 +11,7 @@ RSpec.describe Linguadata::Option do
   it "returns value when necessary" do
     expect(some[1].value).to eq(1)
     expect(some[1].unwrap).to eq(1)
+
     expect { none[].value }.to raise_error(described_class::NoValueError)
     expect { none[].unwrap }.to raise_error(described_class::NoValueError)
   end
@@ -18,6 +19,9 @@ RSpec.describe Linguadata::Option do
   it "map methods work as expected" do
     expect(some[1].map { |x| x + 1 }).to eq(some[2])
     expect(none[].map { |x| x + 1 }).to eq(none[])
+
+    expect { some[1].map }.to raise_error(Linguadata::RequiredBlockError)
+    expect { none[].map }.to raise_error(Linguadata::RequiredBlockError)
   end
 
   it "some? and none? methods work as expected" do
@@ -52,6 +56,9 @@ RSpec.describe Linguadata::Option do
     expect(some[1].filter { |x| x > 0 }).to eq(some[1])
     expect(some[1].filter { |x| x < 0 }).to eq(none[])
     expect(none[].filter { |x| x > 0 }).to eq(none[])
+
+    expect { some[1].filter }.to raise_error(Linguadata::RequiredBlockError)
+    expect { none[].filter }.to raise_error(Linguadata::RequiredBlockError)
   end
 
   it "the error has a message" do
