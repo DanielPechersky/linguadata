@@ -11,4 +11,8 @@ task :typecheck do
   sh "steep check"
 end
 
-task default: %i[typecheck spec]
+task :mutant do
+  sh "mutant run --require linguadata --integration rspec -- 'Linguadata*'"
+end
+
+task default: %i[typecheck spec mutant]

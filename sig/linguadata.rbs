@@ -54,7 +54,7 @@ module Linguadata
       def filter: { (T) -> bool } -> option[T]
     end
 
-    def from_nillable: [T] (T? value) -> option[T]
+    def self.from_nillable: [T] (T? value) -> option[T]
 
     class NoValueError < StandardError
     end
@@ -109,5 +109,8 @@ module Linguadata
 
     class NoValueInFailureError < StandardError
     end
+  end
+
+  class RequiredBlockError < StandardError
   end
 end

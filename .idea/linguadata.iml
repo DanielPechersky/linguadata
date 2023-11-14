@@ -8,74 +8,81 @@
       <sourceFolder url="file://$MODULE_DIR$/features" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/pkg" />
     </content>
     <orderEntry type="jdk" jdkName="rbenv: 3.2.2" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="activesupport (v7.1.1, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="ast (v2.4.2, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bigdecimal (v3.1.4, rbenv: 3.2.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activesupport (v7.1.1, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ast (v2.4.2, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bigdecimal (v3.1.4, rbenv: 3.2.2, linguadata) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.4.10, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.2.2, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="connection_pool (v2.4.1, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="csv (v3.2.7, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.5.0, rbenv: 3.2.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.2.2, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="connection_pool (v2.4.1, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="csv (v3.2.7, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.5.0, rbenv: 3.2.2, linguadata) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="drb (v2.1.1, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="ffi (v1.16.3, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="fileutils (v1.7.1, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="i18n (v1.14.1, rbenv: 3.2.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ffi (v1.16.3, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fileutils (v1.7.1, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="i18n (v1.14.1, rbenv: 3.2.2, linguadata) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v2.6.3, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="language_server-protocol (v3.17.0.3, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="lint_roller (v1.1.0, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="listen (v3.8.0, rbenv: 3.2.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="language_server-protocol (v3.17.0.3, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="lint_roller (v1.1.0, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="listen (v3.8.0, rbenv: 3.2.2, linguadata) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="logger (v1.5.3, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.20.0, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="parallel (v1.23.0, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="parser (v3.2.2.4, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="racc (v1.7.1, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rainbow (v3.1.1, rbenv: 3.2.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.20.0, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mutant (v0.11.24, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mutant-license (v0.1.1.2.0526686720282068589522783053343094335875.0, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mutant-rspec (v0.11.24, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="parallel (v1.23.0, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="parser (v3.2.2.4, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="racc (v1.7.1, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rainbow (v3.1.1, rbenv: 3.2.2, linguadata) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.0.6, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.11.2, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.10.1, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rbs (v3.2.2, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.8.2, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rexml (v3.2.6, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec (v3.12.0, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.12.2, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.12.3, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.12.6, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.12.1, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rubocop (v1.56.4, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.29.0, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rubocop-performance (v1.19.1, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.13.0, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="standard (v1.31.2, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="standard-custom (v1.0.2, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="standard-performance (v1.2.1, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="steep (v1.5.3, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="strscan (v3.0.7, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="terminal-table (v3.0.2, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="tzinfo (v2.0.6, rbenv: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="unicode-display_width (v2.5.0, rbenv: 3.2.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.11.2, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.10.1, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rbs (v3.2.2, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.8.2, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rexml (v3.2.6, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec (v3.12.0, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.12.2, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.12.3, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.12.6, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.12.1, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop (v1.56.4, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.29.0, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop-performance (v1.19.1, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.13.0, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sorbet-runtime (v0.5.11120, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="standard (v1.31.2, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="standard-custom (v1.0.2, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="standard-performance (v1.2.1, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="steep (v1.5.3, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="strscan (v3.0.7, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="terminal-table (v3.0.2, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tzinfo (v2.0.6, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="unicode-display_width (v2.5.0, rbenv: 3.2.2, linguadata) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="unparser (v0.6.10, rbenv: 3.2.2, linguadata) [gem]" level="application" />
   </component>
   <component name="RakeTasksCache">
     <option name="myRootTask">
       <RakeTaskImpl id="rake">
         <subtasks>
-          <RakeTaskImpl description="Build linguadata-0.1.0.gem into the pkg directory" fullCommand="build" id="build" />
+          <RakeTaskImpl description="Build linguadata-0.1.2.gem into the pkg directory" fullCommand="build" id="build" />
           <RakeTaskImpl id="build">
             <subtasks>
-              <RakeTaskImpl description="Generate SHA512 checksum if linguadata-0.1.0.gem into the checksums directory" fullCommand="build:checksum" id="checksum" />
+              <RakeTaskImpl description="Generate SHA512 checksum if linguadata-0.1.2.gem into the checksums directory" fullCommand="build:checksum" id="checksum" />
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl description="Remove any temporary products" fullCommand="clean" id="clean" />
           <RakeTaskImpl description="Remove any generated files" fullCommand="clobber" id="clobber" />
-          <RakeTaskImpl description="Build and install linguadata-0.1.0.gem into system gems" fullCommand="install" id="install" />
+          <RakeTaskImpl description="Build and install linguadata-0.1.2.gem into system gems" fullCommand="install" id="install" />
           <RakeTaskImpl id="install">
             <subtasks>
-              <RakeTaskImpl description="Build and install linguadata-0.1.0.gem into system gems without network access" fullCommand="install:local" id="local" />
+              <RakeTaskImpl description="Build and install linguadata-0.1.2.gem into system gems without network access" fullCommand="install:local" id="local" />
             </subtasks>
           </RakeTaskImpl>
-          <RakeTaskImpl description="Create tag v0.1.0 and build and push linguadata-0.1.0.gem to TODO: Set to your gem server 'https://example.com'" fullCommand="release[remote]" id="release[remote]" />
+          <RakeTaskImpl description="Create tag v0.1.2 and build and push linguadata-0.1.2.gem to https://rubygems.org" fullCommand="release[remote]" id="release[remote]" />
           <RakeTaskImpl description="Run RSpec code examples" fullCommand="spec" id="spec" />
           <RakeTaskImpl description="Lint with the Standard Ruby style guide" fullCommand="standard" id="standard" />
           <RakeTaskImpl id="standard">
@@ -93,6 +100,7 @@
               <RakeTaskImpl description="" fullCommand="release:source_control_push" id="source_control_push" />
             </subtasks>
           </RakeTaskImpl>
+          <RakeTaskImpl description="" fullCommand="typecheck" id="typecheck" />
         </subtasks>
       </RakeTaskImpl>
     </option>
