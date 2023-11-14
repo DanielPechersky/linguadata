@@ -4,7 +4,7 @@ require_relative "linguadata/version"
 
 module Linguadata
   class RequiredBlockError < ArgumentError
-    def initialize(msg = "A block was required but not passed")
+    def initialize(_msg = "A block was required but not passed")
       super
     end
   end
@@ -108,13 +108,23 @@ module Linguadata
 
       def failure = Option::None[]
 
-      def map(&block) = Success[block.call(value)]
+      def map(&block)
+        Success[Linguadata.validate_block_presence(block).call(value)]
+      end
 
-      def map_failure(&_block) = self
+      def map_failure(&block)
+        Linguadata.validate_block_presence(block)
+        self
+      end
 
-      def and_then(&block) = block.call(value)
+      def and_then(&block)
+        Linguadata.validate_block_presence(block).call(value)
+      end
 
-      def or_else(&_block) = self
+      def or_else(&block)
+        Linguadata.validate_block_presence(block)
+        self
+      end
     end
 
     class Failure < Data.define(:error)
@@ -131,23 +141,33 @@ module Linguadata
 
       def failure = Option::Some[error]
 
-      def map(&_block) = self
+      def map(&block)
+        Linguadata.validate_block_presence(block)
+        self
+      end
 
-      def map_failure(&block) = Failure[block.call(error)]
+      def map_failure(&block)
+        Failure[Linguadata.validate_block_presence(block).call(error)]
+      end
 
-      def and_then(&_block) = self
+      def and_then(&block)
+        Linguadata.validate_block_presence(block)
+        self
+      end
 
-      def or_else(&block) = block.call(error)
+      def or_else(&block)
+        Linguadata.validate_block_presence(block).call(error)
+      end
     end
 
     class NoErrorInSuccessError < StandardError
-      def initialize(msg = "Attempted to access an error from 'Success', which represents a successful outcome without errors.")
+      def initialize(_msg = "Attempted to access an error from 'Success', which represents a successful outcome without errors.")
         super
       end
     end
 
     class NoValueInFailureError < StandardError
-      def initialize(msg = "Attempted to access a value from 'Failure', which only contains an error.")
+      def initialize(_msg = "Attempted to access a value from 'Failure', which only contains an error.")
         super
       end
     end
