@@ -3,6 +3,17 @@
 require_relative "linguadata/version"
 
 module Linguadata
+  class RequiredBlockError < ArgumentError
+    def initialize(msg = "A block was required but not passed")
+      super
+    end
+  end
+
+  def self.validate_block_presence(block)
+    raise RequiredBlockError if block.nil?
+    block
+  end
+
   module Option
     class Some < Data.define(:value)
       alias_method :unwrap, :value
@@ -13,11 +24,16 @@ module Linguadata
 
       def none? = false
 
-      def unwrap_or_else(&_block) = value
+      def unwrap_or_else(&block)
+        Linguadata.validate_block_presence(block)
+        value
+      end
 
       def unwrap_or(_other) = value
 
-      def and_then(&block) = block.call(value)
+      def and_then(&block)
+        Linguadata.validate_block_presence(block).call(value)
+      end
 
       def filter(&block)
         if block.call(value)
@@ -33,19 +49,30 @@ module Linguadata
 
       alias_method :unwrap, :value
 
-      def map(&_block) = self
+      def map(&block)
+        Linguadata.validate_block_presence(block)
+        self
+      end
 
       def some? = false
 
       def none? = true
 
-      def unwrap_or_else(&block) = block.call
+      def unwrap_or_else(&block)
+        Linguadata.validate_block_presence(block).call
+      end
 
       def unwrap_or(other) = other
 
-      def and_then(&_block) = self
+      def and_then(&block)
+        Linguadata.validate_block_presence(block)
+        self
+      end
 
-      def filter(&_block) = self
+      def filter(&block)
+        Linguadata.validate_block_presence(block)
+        self
+      end
     end
 
     def self.from_nillable(value)

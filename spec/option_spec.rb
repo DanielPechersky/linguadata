@@ -34,12 +34,18 @@ RSpec.describe Linguadata::Option do
 
     expect(some[1].unwrap_or(2)).to eq(1)
     expect(none[].unwrap_or(2)).to eq(2)
+
+    expect { some[1].unwrap_or_else }.to raise_error(Linguadata::RequiredBlockError)
+    expect { none[].unwrap_or_else }.to raise_error(Linguadata::RequiredBlockError)
   end
 
   it "and_then method works as expected" do
     expect(some[1].and_then { |x| some[x + 1] }).to eq(some[2])
     expect(none[].and_then { |x| some[x + 1] }).to eq(none[])
     expect(some[1].and_then { |_| none[] }).to eq(none[])
+
+    expect { some[1].and_then }.to raise_error(Linguadata::RequiredBlockError)
+    expect { none[].and_then }.to raise_error(Linguadata::RequiredBlockError)
   end
 
   it "filter method works as expected" do
