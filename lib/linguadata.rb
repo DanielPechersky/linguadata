@@ -8,7 +8,8 @@ module Linguadata
       alias_method :unwrap, :value
 
       def map(&block)
-        Some[Linguadata._validate_block_presence(block).call(value)]
+        raise RequiredBlockError if block.nil?
+        Some[block.call(value)]
       end
 
       def some? = true
@@ -16,18 +17,20 @@ module Linguadata
       def none? = false
 
       def unwrap_or_else(&block)
-        Linguadata._validate_block_presence(block)
+        raise RequiredBlockError if block.nil?
         value
       end
 
       def unwrap_or(_other) = value
 
       def and_then(&block)
-        Linguadata._validate_block_presence(block).call(value)
+        raise RequiredBlockError if block.nil?
+        block.call(value)
       end
 
       def filter(&block)
-        if Linguadata._validate_block_presence(block).call(value)
+        raise RequiredBlockError if block.nil?
+        if block.call(value)
           self
         else
           None[]
@@ -41,7 +44,7 @@ module Linguadata
       alias_method :unwrap, :value
 
       def map(&block)
-        Linguadata._validate_block_presence(block)
+        raise RequiredBlockError if block.nil?
         self
       end
 
@@ -50,18 +53,19 @@ module Linguadata
       def none? = true
 
       def unwrap_or_else(&block)
-        Linguadata._validate_block_presence(block).call
+        raise RequiredBlockError if block.nil?
+        block.call
       end
 
       def unwrap_or(other) = other
 
       def and_then(&block)
-        Linguadata._validate_block_presence(block)
+        raise RequiredBlockError if block.nil?
         self
       end
 
       def filter(&block)
-        Linguadata._validate_block_presence(block)
+        raise RequiredBlockError if block.nil?
         self
       end
     end
@@ -98,20 +102,22 @@ module Linguadata
       def failure = Option::None[]
 
       def map(&block)
-        Success[Linguadata._validate_block_presence(block).call(value)]
+        raise RequiredBlockError if block.nil?
+        Success[block.call(value)]
       end
 
       def map_failure(&block)
-        Linguadata._validate_block_presence(block)
+        raise RequiredBlockError if block.nil?
         self
       end
 
       def and_then(&block)
-        Linguadata._validate_block_presence(block).call(value)
+        raise RequiredBlockError if block.nil?
+        block.call(value)
       end
 
       def or_else(&block)
-        Linguadata._validate_block_presence(block)
+        raise RequiredBlockError if block.nil?
         self
       end
     end
@@ -131,21 +137,23 @@ module Linguadata
       def failure = Option::Some[error]
 
       def map(&block)
-        Linguadata._validate_block_presence(block)
+        raise RequiredBlockError if block.nil?
         self
       end
 
       def map_failure(&block)
-        Failure[Linguadata._validate_block_presence(block).call(error)]
+        raise RequiredBlockError if block.nil?
+        Failure[block.call(error)]
       end
 
       def and_then(&block)
-        Linguadata._validate_block_presence(block)
+        raise RequiredBlockError if block.nil?
         self
       end
 
       def or_else(&block)
-        Linguadata._validate_block_presence(block).call(error)
+        raise RequiredBlockError if block.nil?
+        block.call(error)
       end
     end
 
@@ -166,10 +174,5 @@ module Linguadata
     def initialize(_msg = "A block was required but not passed")
       super
     end
-  end
-
-  def self._validate_block_presence(block)
-    raise RequiredBlockError if block.nil?
-    block
   end
 end

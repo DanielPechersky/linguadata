@@ -113,6 +113,4 @@ module Linguadata
 
   class RequiredBlockError < StandardError
   end
-
-  def self._validate_block_presence: [T < Proc] (T?) -> T
 end
