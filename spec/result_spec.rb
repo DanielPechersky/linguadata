@@ -8,14 +8,6 @@ RSpec.describe Linguadata::Result do
     expect(success.instance_methods).to match_array(failure.instance_methods)
   end
 
-  it "returns value as option" do
-    expect(success[1].success).to eq(Linguadata::Option::Some[1])
-    expect(success[1].failure).to eq(Linguadata::Option::None[])
-
-    expect(failure[1].success).to eq(Linguadata::Option::None[])
-    expect(failure[1].failure).to eq(Linguadata::Option::Some[1])
-  end
-
   it "returns value when necessary" do
     expect(success[1].value).to eq(1)
     expect(success[1].unwrap).to eq(1)
@@ -34,6 +26,14 @@ RSpec.describe Linguadata::Result do
 
     expect(success[1].failure?).to eq(false)
     expect(failure[1].failure?).to eq(true)
+  end
+
+  it "returns value as option" do
+    expect(success[1].success).to eq(Linguadata::Option::Some[1])
+    expect(success[1].failure).to eq(Linguadata::Option::None[])
+
+    expect(failure[1].success).to eq(Linguadata::Option::None[])
+    expect(failure[1].failure).to eq(Linguadata::Option::Some[1])
   end
 
   it "map methods work as expected" do

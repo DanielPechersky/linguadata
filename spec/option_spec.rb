@@ -16,14 +16,6 @@ RSpec.describe Linguadata::Option do
     expect { none[].unwrap }.to raise_error(described_class::NoValueError)
   end
 
-  it "map methods work as expected" do
-    expect(some[1].map { |x| x + 1 }).to eq(some[2])
-    expect(none[].map { |x| x + 1 }).to eq(none[])
-
-    expect { some[1].map }.to raise_error(Linguadata::RequiredBlockError)
-    expect { none[].map }.to raise_error(Linguadata::RequiredBlockError)
-  end
-
   it "some? and none? methods work as expected" do
     expect(some[1].some?).to eq(true)
     expect(none[].some?).to eq(false)
@@ -32,7 +24,7 @@ RSpec.describe Linguadata::Option do
     expect(none[].none?).to eq(true)
   end
 
-  it "unwrap_or_else and unwrap_or methods work as expected" do
+  it "unwrap_or and unwrap_or_else methods work as expected" do
     expect(some[1].unwrap_or_else { 2 }).to eq(1)
     expect(none[].unwrap_or_else { 2 }).to eq(2)
 
@@ -41,6 +33,14 @@ RSpec.describe Linguadata::Option do
 
     expect { some[1].unwrap_or_else }.to raise_error(Linguadata::RequiredBlockError)
     expect { none[].unwrap_or_else }.to raise_error(Linguadata::RequiredBlockError)
+  end
+
+  it "map methods work as expected" do
+    expect(some[1].map { |x| x + 1 }).to eq(some[2])
+    expect(none[].map { |x| x + 1 }).to eq(none[])
+
+    expect { some[1].map }.to raise_error(Linguadata::RequiredBlockError)
+    expect { none[].map }.to raise_error(Linguadata::RequiredBlockError)
   end
 
   it "and_then method works as expected" do
