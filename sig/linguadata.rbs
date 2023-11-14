@@ -1,9 +1,6 @@
 module Linguadata
   VERSION: String
 
-  class RequiredBlockError < StandardError
-  end
-
   module DataHelpers
     class ZeroItemData < Data
       def deconstruct: () -> [ ]
@@ -114,5 +111,8 @@ module Linguadata
     end
   end
 
-  def self.validate_block_presence: [T < Proc] (T?) -> T
+  class RequiredBlockError < StandardError
+  end
+
+  def self._validate_block_presence: [T < Proc] (T?) -> T
 end
